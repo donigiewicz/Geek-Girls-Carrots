@@ -46,26 +46,34 @@ public class Example3 {
         System.out.println("User logged in");
 
         //Open
-        WebElement pimMenuEl = driver.findElement(By.id("menu_pim_viewPimModule"));
-        pimMenuEl.click();
+        WebElement pimMenuItem = driver.findElement(By.id("menu_pim_viewPimModule"));
+        pimMenuItem.click();
         System.out.println("PIM module opened");
 
 
         //Act
         //Add new employee
         //Enter data
-        driver.findElement(By.id("menu_pim_addEmployee")).click();
-        driver.findElement(By.id("firstName")).sendKeys(employeeFirstName);
-        driver.findElement(By.id("lastName")).sendKeys(employeeLastName);
-        driver.findElement(By.id("chkLogin")).click();
-        driver.findElement(By.name("user_name")).sendKeys(employeeUsername);
-        driver.findElement(By.name("user_password")).sendKeys(employeePassword);
-        driver.findElement(By.name("re_password")).sendKeys(employeePassword);
+        WebElement employeeMenuItem = driver.findElement(By.id("menu_pim_addEmployee"));
+        pimMenuItem.click();
+        WebElement firstNameInput = driver.findElement(By.id("firstName"));
+        firstNameInput.sendKeys(employeeFirstName);
+        WebElement lastNameInput = driver.findElement(By.id("lastName"));
+        lastNameInput.sendKeys(employeeLastName);
+        WebElement createLoginDetailsCheckbox = driver.findElement(By.id("chkLogin"));
+        createLoginDetailsCheckbox.click();
+        WebElement userNameInput = driver.findElement(By.name("user_name"));
+        userNameInput.sendKeys(employeeUsername);
+        WebElement userPasswordInput = driver.findElement(By.name("user_password"));
+        userPasswordInput.sendKeys(employeePassword);
+        WebElement repasswordInput = driver.findElement(By.name("re_password"));
+        repasswordInput.sendKeys(employeePassword);
         Select statusSelect = new Select(driver.findElement(By.id("status")));
         statusSelect.selectByValue("Disabled");
         System.out.println("User data entered");
         //Save data
-        driver.findElement(By.id("btnSave")).click();
+        WebElement saveButton = driver.findElement(By.id("btnSave"));
+        saveButton.click();
 
         //Assert
         //Check first and last name
