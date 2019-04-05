@@ -23,7 +23,7 @@ public class Example3 {
 
         String employeeFirstName = "Tom";
         String employeeLastName = "Johns";
-        String employeeUsername = "userXxx";
+        String employeeUsername = "tjohns";
         String employeePassword = "haslo123!";
 
         //Arrange
