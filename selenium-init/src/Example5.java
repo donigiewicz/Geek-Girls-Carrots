@@ -64,7 +64,6 @@ public class Example5 {
         @After
         public void clearCookiesAndRefreshPage(){
             driver.manage().deleteAllCookies();
-            System.out.println("aaa");
             driver.navigate().refresh();
         }
 
