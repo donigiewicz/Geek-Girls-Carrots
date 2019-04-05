@@ -55,7 +55,7 @@ public class Example3 {
         //Add new employee
         //Enter data
         WebElement employeeMenuItem = driver.findElement(By.id("menu_pim_addEmployee"));
-        pimMenuItem.click();
+        employeeMenuItem.click();
         WebElement firstNameInput = driver.findElement(By.id("firstName"));
         firstNameInput.sendKeys(employeeFirstName);
         WebElement lastNameInput = driver.findElement(By.id("lastName"));
