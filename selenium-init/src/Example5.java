@@ -11,7 +11,7 @@ public class Example5 {
     static WebDriver driver;
 
     @BeforeClass
-    public static void openPageAndLogin(){
+    public static void openPageAndTryToLoginWithImproperCredentials(){
 
         String systemName = System.getProperty("os.name").toLowerCase();
         if (systemName.contains("windows")) {
@@ -61,6 +61,12 @@ public class Example5 {
             Assert.assertEquals("Invalid credentials", warningMessage.getText());
         }
 
+        @After
+        public void clearCookiesAndRefreshPage(){
+            driver.manage().deleteAllCookies();
+            System.out.println("aaa");
+            driver.navigate().refresh();
+        }
 
         @AfterClass
         public static void closeBrowser() {
