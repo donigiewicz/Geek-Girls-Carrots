@@ -26,7 +26,7 @@ public class Example4 {
         driver.manage().window().maximize();
         driver.get("https://opensource-demo.orangehrmlive.com");
         System.out.println("Page opened");
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+
 
         //Log in to application
         WebElement usernameInput = driver.findElement(By.id("txtUsername"));
@@ -45,6 +45,7 @@ public class Example4 {
         //Logout
         WebElement welcomeText = driver.findElement(By.id("welcome"));
         welcomeText.click();
+        WebDriverWait wait = new WebDriverWait(driver, 5);
         WebElement logoutLink = wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Logout")));
         logoutLink.click();
 

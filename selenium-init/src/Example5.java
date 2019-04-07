@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,8 +11,8 @@ public class Example5 {
 
     static WebDriver driver;
 
-    @BeforeClass
-    public static void openPageAndTryToLoginWithImproperCredentials(){
+    @Before
+    public void openPageAndTryToLoginWithImproperCredentials(){
 
         String systemName = System.getProperty("os.name").toLowerCase();
         if (systemName.contains("windows")) {
@@ -30,10 +31,23 @@ public class Example5 {
 
         }
 
-        @Before
-        public void openPage() {
+        @Test
+        public void actionsTest() {
 
-            driver.get("https://opensource-demo.orangehrmlive.com");
+            WebElement usernameInput = driver.findElement(By.id("txtUsername"));
+            usernameInput.sendKeys("Admin");
+            WebElement passwordInput = driver.findElement(By.id("txtPassword"));
+            passwordInput.sendKeys("admin123");
+            driver.findElement(By.id("btnLogin")).click();
+
+            WebElement pimButton = driver.findElement(By.id("menu_pim_viewPimModule"));
+            WebElement addEmployeeButton = driver.findElement(By.id("menu_pim_addEmployee"));
+
+            Actions navigateAction = new Actions(driver);
+            navigateAction.moveToElement(pimButton)
+                    .moveToElement(addEmployeeButton)
+                    .click()
+                    .perform();
 
         }
 
@@ -63,13 +77,6 @@ public class Example5 {
 
         @After
         public void clearCookiesAndRefreshPage(){
-            driver.manage().deleteAllCookies();
-            driver.navigate().refresh();
-        }
-
-        @AfterClass
-        public static void closeBrowser() {
-            //Cleanup
-            driver.close();
+            //driver.close();
         }
 }

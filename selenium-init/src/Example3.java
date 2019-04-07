@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Example3 {
@@ -20,6 +21,10 @@ public class Example3 {
         } else {
             System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/bin/chromedriver_osx");
         }
+
+        Random rand = new Random();
+        int IDnumber = rand.nextInt(1000000000);
+        String employeeID = Integer.toString(IDnumber);
 
         String employeeFirstName = "Tom";
         String employeeLastName = "Johns";
@@ -64,12 +69,16 @@ public class Example3 {
         createLoginDetailsCheckbox.click();
         WebElement userNameInput = driver.findElement(By.name("user_name"));
         userNameInput.sendKeys(employeeUsername);
+        WebElement userID = driver.findElement(By.name("employeeId"));
+        userID.sendKeys(employeeID);
         WebElement userPasswordInput = driver.findElement(By.name("user_password"));
         userPasswordInput.sendKeys(employeePassword);
         WebElement repasswordInput = driver.findElement(By.name("re_password"));
         repasswordInput.sendKeys(employeePassword);
+
         Select statusSelect = new Select(driver.findElement(By.id("status")));
         statusSelect.selectByValue("Disabled");
+
         System.out.println("User data entered");
         //Save data
         WebElement saveButton = driver.findElement(By.id("btnSave"));
